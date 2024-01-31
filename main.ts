@@ -1,16 +1,26 @@
-let mySprite = sprites.create(img`
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    mySprite.setVelocity(100, 100)
+})
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    mySprite.setPosition(0, 0)
+})
+controller.A.onEvent(ControllerButtonEvent.Released, function () {
+    mySprite.setVelocity(10, 10)
+})
+let mySprite: Sprite = null
+mySprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    . d d d d d d d d . . . . . . . 
-    . d d f d d f d d . . . . . . . 
-    . d 9 9 9 9 9 9 d . . . . . . . 
-    . d 5 4 4 4 4 5 d . . . . . . . 
-    . d 5 5 5 5 5 5 d . . . . . . . 
-    . d d d d d d d d . . . . . . . 
-    . d d d d d d d d . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
+    . . . . d d d d d d d d . . . . 
+    . . . . d d d d d d d d . . . . 
+    . . . . d d f d d f d d . . . . 
+    . . . . d 9 9 9 9 9 9 d . . . . 
+    . . . . d 5 4 4 4 4 5 d . . . . 
+    . . . . d 5 5 5 5 5 5 d . . . . 
+    . . . . d d d d d d d d . . . . 
+    . . . . d d d d d d d d . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -138,4 +148,25 @@ scene.setBackgroundImage(img`
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
     `)
-controller.moveSprite(mySprite, 100, 100)
+mySprite.setPosition(0, 0)
+mySprite.setVelocity(50, 50)
+let mySprite2 = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . 7 7 7 7 7 7 7 7 . . . . 
+    . . . . 7 7 7 7 7 7 7 7 . . . . 
+    . . . . 7 7 f 7 7 f 7 7 . . . . 
+    . . . . 7 9 9 9 9 9 9 7 . . . . 
+    . . . . 7 5 4 4 4 4 5 7 . . . . 
+    . . . . 7 5 5 5 5 5 5 7 . . . . 
+    . . . . 7 7 7 7 7 7 7 7 . . . . 
+    . . . . 7 7 7 7 7 7 7 7 . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Player)
+mySprite.follow(mySprite2, 100)
+controller.moveSprite(mySprite2, 100, 100)
